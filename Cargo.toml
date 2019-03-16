@@ -1,0 +1,7 @@
+[package]
+name = "mockun"
+version = "0.1.0"
+authors = ["Daisuke Toyama"]
+edition = "2018"
+
+[dependencies]
