@@ -43,7 +43,7 @@ fn handle_connection(mut stream: TcpStream, path_and_responses: &Vec<PathAndResp
   let mut _stream = BufReader::new(stream.try_clone().unwrap());
   let mut first_line = String::new();
   _stream.read_line(&mut first_line).unwrap();
-  println!("{:?}",_stream);
+
   let mut params = first_line.split_whitespace();
   let _method = params.next();
   let path = params.next().unwrap();
@@ -57,6 +57,7 @@ fn handle_connection(mut stream: TcpStream, path_and_responses: &Vec<PathAndResp
 
   writeln!(stream, "HTTP/1.1 200 OK").unwrap();
   writeln!(stream, "Access-Control-Allow-Origin: *").unwrap();
+  writeln!(stream, "Access-Control-Allow-Methods: GET,POST,HEAD,OPTIONS").unwrap();
   writeln!(stream, "Content-Type: {}; charset=UTF-8", content_type).unwrap();
   writeln!(stream, "Content-Length: {}", body.len()).unwrap();
   writeln!(stream, "Server: {}", "mockun").unwrap();
